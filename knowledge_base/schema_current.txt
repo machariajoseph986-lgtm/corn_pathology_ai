@@ -1,0 +1,111 @@
+CREATE TABLE plants (
+    plant_id TEXT PRIMARY KEY,
+    common_name TEXT NOT NULL UNIQUE,
+    genus TEXT,
+    family TEXT
+);
+CREATE TABLE species (
+    species_id TEXT PRIMARY KEY,
+    plant_id TEXT NOT NULL,
+    scientific_name TEXT NOT NULL,
+    common_name TEXT,
+
+    FOREIGN KEY (plant_id)
+        REFERENCES plants(plant_id)
+        ON DELETE CASCADE,
+
+    UNIQUE (plant_id, scientific_name)
+);
+CREATE TABLE health_problems (
+    health_problem_id TEXT PRIMARY KEY,
+    plant_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    description TEXT,
+
+    FOREIGN KEY (plant_id)
+        REFERENCES plants(plant_id)
+        ON DELETE CASCADE,
+
+    UNIQUE (plant_id, name)
+);
+CREATE TABLE pathogens (
+    pathogen_id TEXT PRIMARY KEY,
+    health_problem_id TEXT NOT NULL,
+    scientific_name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    role TEXT,
+
+    FOREIGN KEY (health_problem_id)
+        REFERENCES health_problems(health_problem_id)
+        ON DELETE CASCADE
+);
+CREATE TABLE symptoms (
+    symptom_id TEXT PRIMARY KEY,
+    health_problem_id TEXT NOT NULL,
+    category TEXT,
+    description TEXT NOT NULL,
+
+    FOREIGN KEY (health_problem_id)
+        REFERENCES health_problems(health_problem_id)
+        ON DELETE CASCADE
+);
+CREATE TABLE transmission (
+    transmission_id TEXT PRIMARY KEY,
+    health_problem_id TEXT NOT NULL,
+    method TEXT NOT NULL,
+    description TEXT,
+
+    FOREIGN KEY (health_problem_id)
+        REFERENCES health_problems(health_problem_id)
+        ON DELETE CASCADE
+);
+CREATE TABLE conditions (
+    condition_id TEXT PRIMARY KEY,
+    health_problem_id TEXT NOT NULL,
+    factor TEXT NOT NULL,
+    value TEXT,
+    description TEXT,
+
+    FOREIGN KEY (health_problem_id)
+        REFERENCES health_problems(health_problem_id)
+        ON DELETE CASCADE
+);
+CREATE TABLE management (
+    management_id TEXT PRIMARY KEY,
+    health_problem_id TEXT NOT NULL,
+    category TEXT NOT NULL,
+    action TEXT NOT NULL,
+
+    FOREIGN KEY (health_problem_id)
+        REFERENCES health_problems(health_problem_id)
+        ON DELETE CASCADE
+);
+CREATE TABLE sources (
+    source_id TEXT PRIMARY KEY,
+    health_problem_id TEXT NOT NULL,
+    organization TEXT,
+    title TEXT,
+    url TEXT NOT NULL,
+    accessed_date TEXT,
+
+    FOREIGN KEY (health_problem_id)
+        REFERENCES health_problems(health_problem_id)
+        ON DELETE CASCADE
+);
+CREATE INDEX idx_species_plant
+    ON species(plant_id);
+CREATE INDEX idx_health_problems_plant
+    ON health_problems(plant_id);
+CREATE INDEX idx_pathogens_health_problem
+    ON pathogens(health_problem_id);
+CREATE INDEX idx_symptoms_health_problem
+    ON symptoms(health_problem_id);
+CREATE INDEX idx_transmission_health_problem
+    ON transmission(health_problem_id);
+CREATE INDEX idx_conditions_health_problem
+    ON conditions(health_problem_id);
+CREATE INDEX idx_management_health_problem
+    ON management(health_problem_id);
+CREATE INDEX idx_sources_health_problem
+    ON sources(health_problem_id);

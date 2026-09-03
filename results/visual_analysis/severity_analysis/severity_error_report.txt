@@ -1,0 +1,24 @@
+BLIGHT ↔ GRAY LEAF SPOT SEVERITY / ERROR ANALYSIS
+======================================================================
+
+Purpose:
+Determine whether manually recorded disease severity is associated with Blight ↔ Gray Leaf Spot classification errors.
+
+Important:
+NO DATASET CHANGES WERE MADE.
+NO LABELS WERE CHANGED.
+NO MODEL WAS RETRAINED.
+
+Focused images analyzed: 47
+Boundary errors analyzed: 27
+
+SEVERITY SUMMARY
+----------------------------------------------------------------------
+
+PRELIMINARY INTERPRETATION
+----------------------------------------------------------------------
+- No usable severity ratings were recorded.
+
+NEXT DECISION POINT
+----------------------------------------------------------------------
+Use the severity results together with the manual visual observations to determine whether V2 should include additional early-stage, moderate-stage, and advanced-stage examples for both Blight and Gray Leaf Spot.

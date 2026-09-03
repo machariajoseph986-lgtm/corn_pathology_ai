@@ -1,0 +1,93 @@
+======================================================================
+CORN PATHOLOGY AI - EXPERIMENT SUMMARY
+======================================================================
+
+PROJECT
+----------------------------------------------------------------------
+Corn Pathology AI
+
+DATASET
+----------------------------------------------------------------------
+Original images: 4188
+Removed conflicting duplicates: 4
+Clean images: 4184
+Classes: Blight, Common_Rust, Gray_Leaf_Spot, Healthy
+
+DATASET SPLIT
+----------------------------------------------------------------------
+Training: 2928
+Validation: 628
+Test: 628
+Strategy: Stratified split
+
+PREPROCESSING
+----------------------------------------------------------------------
+Image size: 256 x 256
+Channels: 3
+Normalization: 1/255
+Augmentation: Training set only
+Validation augmentation: No
+Test augmentation: No
+
+CLASS WEIGHTS
+----------------------------------------------------------------------
+0: Blight               0.913858
+1: Common_Rust          0.800875
+2: Gray_Leaf_Spot       1.83
+3: Healthy              0.900369
+
+MODEL
+----------------------------------------------------------------------
+Model: Custom CNN
+Input: 256 x 256 x 3
+Output classes: 4
+Optimizer: Adam
+Loss: Sparse Categorical Crossentropy
+Class weights used: Yes
+
+TRAINING RESULTS
+----------------------------------------------------------------------
+Epochs completed: 19
+Best training accuracy: 0.9491
+Best validation accuracy: 0.9395
+Best validation epoch: 17
+
+TEST RESULTS
+----------------------------------------------------------------------
+Test accuracy: 0.9363 (93.63%)
+Test loss: 0.1805
+Macro F1: 0.9232
+Weighted F1: 0.9369
+
+PER-CLASS PERFORMANCE
+----------------------------------------------------------------------
+Blight               Precision: 0.9187 | Recall: 0.8547 | F1: 0.8855
+Common_Rust          Precision: 0.9844 | Recall: 0.9643 | F1: 0.9742
+Gray_Leaf_Spot       Precision: 0.7800 | Recall: 0.9070 | F1: 0.8387
+Healthy              Precision: 0.9886 | Recall: 1.0000 | F1: 0.9943
+
+CONFUSION MATRIX
+----------------------------------------------------------------------
+Class order: Blight, Common_Rust, Gray_Leaf_Spot, Healthy
+
+ 147    3   20    2
+   5  189    2    0
+   8    0   78    0
+   0    0    0  174
+
+KEY FINDINGS
+----------------------------------------------------------------------
+- The CNN achieved 93.63% accuracy on the independent test set.
+- Validation accuracy reached approximately 93.95%.
+- The best training accuracy was approximately 94.91%.
+- Healthy achieved 100% recall on the test set.
+- Common_Rust achieved 96.43% recall on the test set.
+- Gray_Leaf_Spot achieved 90.70% recall on the test set.
+- The main confusion was between Blight and Gray_Leaf_Spot.
+- 20 Blight images were classified as Gray_Leaf_Spot.
+- Class weighting gave Gray_Leaf_Spot the highest weight because it was the minority class.
+- Test evaluation was performed using the same 256x256 and 1/255 normalization pipeline used during training.
+
+======================================================================
+EXPERIMENT SUMMARY COMPLETE
+======================================================================

@@ -1,0 +1,22 @@
+{
+    "classes": [
+        "Blight",
+        "Common_Rust",
+        "Gray_Leaf_Spot",
+        "Healthy"
+    ],
+    "class_counts": {
+        "Blight": 801,
+        "Common_Rust": 914,
+        "Gray_Leaf_Spot": 400,
+        "Healthy": 813
+    },
+    "total_training_images": 2928,
+    "number_of_classes": 4,
+    "class_weights": {
+        "0": 0.913858,
+        "1": 0.800875,
+        "2": 1.83,
+        "3": 0.900369
+    }
+}

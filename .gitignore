@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+nn-env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Python / ML caches
+.keras/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Dataset
+dataset_split/
+
+# Quarantine / temporary dataset files
+quarantine/
+
+# Large trained model files
+training_output/*.keras
+training_output/v2/*.keras
+
+# Keep training history
+# training_output/*.json
+
+# Test artifacts
+test_invalid_image.jpg
+
+# Individual error-review images
+results/misclassifications/**/*.jpg
+results/misclassifications/**/*.JPG
+
+# Original dataset
+data/Blight/
+data/Common_Rust/
+data/Gray_Leaf_Spot/
+data/Healthy/

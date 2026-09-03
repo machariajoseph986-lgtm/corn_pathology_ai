@@ -1,0 +1,160 @@
+{
+    "project": "Corn Pathology AI",
+    "generated_at": "2026-08-22T10:28:47.515432",
+    "dataset": {
+        "original_images": 4188,
+        "removed_conflicting_duplicates": 4,
+        "clean_images": 4184,
+        "number_of_classes": 4,
+        "classes": [
+            "Blight",
+            "Common_Rust",
+            "Gray_Leaf_Spot",
+            "Healthy"
+        ]
+    },
+    "class_distribution": {
+        "Blight": {
+            "total": 1144,
+            "train": 801,
+            "validation": 171,
+            "test": 172
+        },
+        "Common_Rust": {
+            "total": 1306,
+            "train": 914,
+            "validation": 196,
+            "test": 196
+        },
+        "Gray_Leaf_Spot": {
+            "total": 572,
+            "train": 400,
+            "validation": 86,
+            "test": 86
+        },
+        "Healthy": {
+            "total": 1162,
+            "train": 813,
+            "validation": 175,
+            "test": 174
+        }
+    },
+    "split": {
+        "training": 2928,
+        "validation": 628,
+        "test": 628,
+        "total": 4184,
+        "strategy": "Stratified split"
+    },
+    "preprocessing": {
+        "image_size": "256x256",
+        "channels": 3,
+        "normalization": "Rescaling 1/255",
+        "pixel_range_after_normalization": "0-1",
+        "augmentation": {
+            "applied_to": "Training set only",
+            "validation_augmented": false,
+            "test_augmented": false
+        }
+    },
+    "class_weights": {
+        "0": 0.913858,
+        "1": 0.800875,
+        "2": 1.83,
+        "3": 0.900369
+    },
+    "model": {
+        "model_type": "Custom CNN",
+        "input_size": "256x256x3",
+        "number_of_classes": 4,
+        "output_activation": "Softmax",
+        "loss_function": "Sparse Categorical Crossentropy",
+        "optimizer": "Adam",
+        "class_weights_used": true
+    },
+    "training": {
+        "epochs_completed": 19,
+        "best_training_accuracy": 0.9491119980812073,
+        "best_validation_accuracy": 0.9394904375076294,
+        "best_validation_epoch": 17,
+        "final_training_accuracy": 0.9491119980812073,
+        "final_validation_accuracy": 0.9299362897872925,
+        "final_training_loss": 0.13748015463352203,
+        "final_validation_loss": 0.18566374480724335
+    },
+    "test_results": {
+        "test_images": 628,
+        "test_accuracy": 0.9363,
+        "test_loss": 0.1805,
+        "macro_f1": 0.9232,
+        "weighted_f1": 0.9369
+    },
+    "per_class_results": {
+        "Blight": {
+            "precision": 0.9187,
+            "recall": 0.8547,
+            "f1_score": 0.8855
+        },
+        "Common_Rust": {
+            "precision": 0.9844,
+            "recall": 0.9643,
+            "f1_score": 0.9742
+        },
+        "Gray_Leaf_Spot": {
+            "precision": 0.78,
+            "recall": 0.907,
+            "f1_score": 0.8387
+        },
+        "Healthy": {
+            "precision": 0.9886,
+            "recall": 1.0,
+            "f1_score": 0.9943
+        }
+    },
+    "confusion_matrix": {
+        "class_order": [
+            "Blight",
+            "Common_Rust",
+            "Gray_Leaf_Spot",
+            "Healthy"
+        ],
+        "matrix": [
+            [
+                147,
+                3,
+                20,
+                2
+            ],
+            [
+                5,
+                189,
+                2,
+                0
+            ],
+            [
+                8,
+                0,
+                78,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                174
+            ]
+        ]
+    },
+    "findings": [
+        "The CNN achieved 93.63% accuracy on the independent test set.",
+        "Validation accuracy reached approximately 93.95%.",
+        "The best training accuracy was approximately 94.91%.",
+        "Healthy achieved 100% recall on the test set.",
+        "Common_Rust achieved 96.43% recall on the test set.",
+        "Gray_Leaf_Spot achieved 90.70% recall on the test set.",
+        "The main confusion was between Blight and Gray_Leaf_Spot.",
+        "20 Blight images were classified as Gray_Leaf_Spot.",
+        "Class weighting gave Gray_Leaf_Spot the highest weight because it was the minority class.",
+        "Test evaluation was performed using the same 256x256 and 1/255 normalization pipeline used during training."
+    ]
+}
