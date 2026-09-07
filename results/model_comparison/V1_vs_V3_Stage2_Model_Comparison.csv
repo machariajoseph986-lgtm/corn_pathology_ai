@@ -1,0 +1,15 @@
+Metric,V1,V3 Stage 2,Change (V3 vs V1)
+Test accuracy (%),93.6306,94.4268,+0.7962 percentage points
+Correct test predictions,588,593,+5
+Incorrect test predictions,40,35,-5
+Macro F1 (%),92.32,92.97,+0.65 percentage points
+Weighted F1 (%),93.69,94.42,+0.73 percentage points
+Blight precision (%),91.87,91.76,-0.11 percentage points
+Blight recall (%),85.47,90.70,+5.23 percentage points
+Blight F1 (%),88.55,91.23,+2.68 percentage points
+Gray Leaf Spot precision (%),78.00,83.72,+5.72 percentage points
+Gray Leaf Spot recall (%),90.70,83.72,-6.98 percentage points
+Gray Leaf Spot F1 (%),83.87,83.72,-0.15 percentage points
+Blight -> Gray Leaf Spot errors,20,13,-7
+Gray Leaf Spot -> Blight errors,8,10,+2
+Combined Blight <-> Gray Leaf Spot errors,28,23,-5 (17.9% reduction)

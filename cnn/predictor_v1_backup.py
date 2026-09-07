@@ -1,7 +1,7 @@
 """
 CNN Image Predictor
 
-Loads the trained V3 MobileNetV2 model, predicts the disease class
+Loads the trained maize disease CNN, predicts the disease class
 for an image, and maps the prediction to the SQLite knowledge base.
 
 CNN classes:
@@ -39,27 +39,26 @@ PROJECT_DIR = os.path.dirname(
 MODEL_PATH = os.path.join(
     PROJECT_DIR,
     "training_output",
-    "v3",
-    "best_maize_disease_mobilenetv2_v3_finetuned.keras"
+    "best_maize_disease_cnn.keras"
 )
 
-IMAGE_SIZE = (320, 320)
+IMAGE_SIZE = (256, 256)
 
 
 # ============================================================
 # LOAD MODEL
 # ============================================================
 
-print("Loading V3 MobileNetV2 model...")
+print("Loading CNN model...")
 
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(
-        f"V3 MobileNetV2 model not found:\n{MODEL_PATH}"
+        f"CNN model not found:\n{MODEL_PATH}"
     )
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
-print("V3 MobileNetV2 model loaded successfully.")
+print("CNN model loaded successfully.")
 
 
 # ============================================================
@@ -128,15 +127,12 @@ def predict_image(image_path):
     )
 
     # ========================================================
-    # MOBILENETV2 PREPROCESSING
+    # NORMALIZE PIXEL VALUES
     #
-    # Matches V3 training/evaluation preprocessing.
-    # Converts pixel values from [0, 255] to [-1, 1].
+    # Matches V1 training/evaluation preprocessing.
     # ========================================================
 
-    image_array = tf.keras.applications.mobilenet_v2.preprocess_input(
-        image_array
-    )
+    image_array = image_array / 255.0
 
     # ========================================================
     # ADD BATCH DIMENSION
@@ -203,9 +199,9 @@ def predict_image(image_path):
     if caution_required:
 
         caution_reason = (
-            "Blight and Gray Leaf Spot remain a known "
-            "high-confusion disease pair in the evaluated "
-            "model results."
+            "Blight and Gray Leaf Spot are a known "
+            "high-confusion disease pair in the V1 "
+            "validation evaluation."
         )
 
     else:
@@ -247,7 +243,6 @@ def predict_image(image_path):
 
     return result
 
-
 # ============================================================
 # COMMAND-LINE TEST
 # ============================================================
@@ -267,7 +262,7 @@ if __name__ == "__main__":
     image_path = sys.argv[1]
 
     print("\n" + "=" * 60)
-    print("V3 MOBILENETV2 IMAGE PREDICTION TEST")
+    print("CNN IMAGE PREDICTION TEST")
     print("=" * 60)
 
     result = predict_image(
@@ -284,7 +279,7 @@ if __name__ == "__main__":
         f"  Confidence  : "
         f"{result['confidence'] * 100:.2f}%"
     )
-
+    
     print(
         f"  Threshold   : "
         f"{result['confidence_threshold'] * 100:.2f}%"
@@ -319,3 +314,4 @@ if __name__ == "__main__":
     )
 
     print("\n" + "=" * 60)
+

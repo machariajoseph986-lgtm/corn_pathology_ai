@@ -50,3 +50,4 @@ data/Blight/
 data/Common_Rust/
 data/Gray_Leaf_Spot/
 data/Healthy/
+training_output/v3/*.keras

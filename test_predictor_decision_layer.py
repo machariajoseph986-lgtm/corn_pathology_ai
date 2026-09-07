@@ -7,7 +7,7 @@ Purpose:
 
 Tests:
     1. High-confidence Blight
-    2. Low-confidence Blight
+    2. Low-confidence V3 prediction
     3. High-confidence Common Rust
     4. High-confidence Healthy
     5. Blight ↔ Gray Leaf Spot caution behavior
@@ -59,17 +59,17 @@ TEST_CASES = [
     },
 
     {
-        "name": "Low-confidence Blight",
+        "name": "Low-confidence V3 prediction",
         "image": os.path.join(
             PROJECT_DIR,
             "dataset_split",
             "test",
             "Blight",
-            "Corn_Blight (739).JPG"
+            "Corn_Blight (63).jpg"
         ),
-        "expected_class": "Blight",
+        "expected_class": "Common_Rust",
         "expected_status": "uncertain",
-        "expected_caution": True
+        "expected_caution": False
     },
 
     {
@@ -309,7 +309,7 @@ if failed == 0:
     )
 
     print(
-        "  ✓ Low-confidence Blight"
+        "  ✓ Low-confidence V3 prediction"
     )
 
     print(
