@@ -50,4 +50,11 @@ data/Blight/
 data/Common_Rust/
 data/Gray_Leaf_Spot/
 data/Healthy/
-training_output/v3/*.keras
+
+# Final V3 deployment model
+!training_output/v3/
+!training_output/v3/best_maize_disease_mobilenetv2_v3_finetuned.keras
+
+# User-uploaded diagnosis images
+static/uploads/*
+!static/uploads/.gitkeep

@@ -1,4 +1,4 @@
-from database import (
+from knowledge_base.database import (
     get_all_diseases,
     find_disease,
     get_disease_profile

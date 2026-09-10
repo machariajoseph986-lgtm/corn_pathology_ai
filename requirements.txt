@@ -1,0 +1,5 @@
+Flask
+tensorflow==2.21.0
+keras==3.15.0
+Pillow==12.3.0
+numpy==2.4.6
