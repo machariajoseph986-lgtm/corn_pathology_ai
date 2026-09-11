@@ -1,4 +1,8 @@
 Flask
+FastAPI==0.141.1
+uvicorn==0.52.4
+python-multipart
+psycopg[binary]
 tensorflow==2.21.0
 keras==3.15.0
 Pillow==12.3.0
