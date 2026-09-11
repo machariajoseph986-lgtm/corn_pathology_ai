@@ -8,6 +8,11 @@ import uuid
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
+# PURPOSE: Disable TensorFlow XLA JIT to prevent native CPU/XLA crashes on the Render deployment.
+# EXPECTED RESULT: TensorFlow runs inference without compiling the prediction through XLA.
+
+os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=0"
+
 from cnn.predictor import predict_image
 
 
