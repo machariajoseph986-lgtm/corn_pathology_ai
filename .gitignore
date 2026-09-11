@@ -58,3 +58,6 @@ data/Healthy/
 # User-uploaded diagnosis images
 static/uploads/*
 !static/uploads/.gitkeep
+
+# Local environment variables
+.env
