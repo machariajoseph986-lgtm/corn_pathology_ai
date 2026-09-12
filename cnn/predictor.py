@@ -57,7 +57,10 @@ if not os.path.exists(MODEL_PATH):
         f"V3 MobileNetV2 model not found:\n{MODEL_PATH}"
     )
 
-model = tf.keras.models.load_model(MODEL_PATH)
+model = tf.keras.models.load_model(
+    MODEL_PATH,
+    compile=False
+)
 
 print("V3 MobileNetV2 model loaded successfully.")
 
