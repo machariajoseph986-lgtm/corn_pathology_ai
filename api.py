@@ -13,7 +13,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=0"
 
-from cnn.predictor import predict_image
 
 
 app = FastAPI(
@@ -83,6 +82,7 @@ async def predict(
     """
     Run the V3 MobileNetV2 model on an uploaded image.
     """
+    from cnn.predictor import predict_image
 
     if not image.filename:
         raise HTTPException(
