@@ -308,3 +308,21 @@ async def chat(
         "question": question,
         "response": response
     }
+
+@app.get("/db-test")
+def db_test():
+    # PURPOSE: Test the live Render PostgreSQL connection independently
+    #          from the CNN and diagnosis pipeline.
+    # EXPECTED OUTPUT: A successful response containing the Blight
+    #                  knowledge-base profile.
+
+    from knowledge_base.database_postgresql import get_disease_profile
+
+    profile = get_disease_profile("HP_MAIZE_BLIGHT")
+
+    return {
+        "status": "ok",
+        "database": "postgresql",
+        "profile_found": profile is not None,
+        "health_problem_id": profile.get("health_problem_id") if profile else None
+    }
